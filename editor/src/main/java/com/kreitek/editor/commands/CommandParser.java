@@ -42,6 +42,9 @@ public class CommandParser {
 
             return new String[]{"u", arg2, arg3};
         }
+        if (commandLine.equals("undo")) {
+            return new String[]{"undo"};
+        }
         return new String[]{commandLine};
     }
     

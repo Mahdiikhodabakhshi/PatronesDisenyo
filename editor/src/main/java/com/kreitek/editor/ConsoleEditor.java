@@ -1,6 +1,7 @@
 package com.kreitek.editor;
 
 import com.kreitek.editor.commands.CommandFactory;
+import com.kreitek.editor.commands.memento.EditorCareTaker;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,7 +17,8 @@ public class ConsoleEditor implements Editor {
     public static final String TEXT_CYAN = "\u001B[36m";
     public static final String TEXT_WHITE = "\u001B[37m";
 
-    private final CommandFactory commandFactory = new CommandFactory();
+    private final EditorCareTaker editorCareTaker = new EditorCareTaker();
+    private final CommandFactory commandFactory = new CommandFactory(editorCareTaker);
     private ArrayList<String> documentLines = new ArrayList<String>();
 
     @Override
@@ -64,6 +66,8 @@ public class ConsoleEditor implements Editor {
         printLnToConsole("To add new line -> a \"your text\"");
         printLnToConsole("To update line  -> u [line number] \"your text\"");
         printLnToConsole("To delete line  -> d [line number]");
+        printLnToConsole("To Undo line  -> undo ");
+
     }
 
     private void printErrorToConsole(String message) {
